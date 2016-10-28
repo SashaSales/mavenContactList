@@ -96,6 +96,8 @@ public class ReloadDB {
         JFileChooser fch = new JFileChooser();
         fch.setName("Выбрать путь сохранения базы данных");
         fch.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+        File defaultDir = new File (".");
+        fch.setCurrentDirectory(defaultDir);
 
 
         switch (fch.showDialog(null, "Выбрать путь сохранения базы данных")){
@@ -118,6 +120,19 @@ public class ReloadDB {
                 break;
 
             case JFileChooser.CANCEL_OPTION:
+                pathForDb = "resources/myDB.txt";
+                fileDB = new File(pathForDb);
+                try {
+                    fileDB.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                try {
+                    IOutilsImpl.savePathToFile(Contstants.PATH_FOR_SAVEDB, fileDB);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
                 break;
             case JFileChooser.ERROR_OPTION:
                 System.err.println("Error"); break;

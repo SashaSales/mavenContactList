@@ -27,8 +27,9 @@ public class StartApp {
         IappDB iappDB = ReloadDB.Start();
 
         IControllerlist iControllerlist = new LogerControllerProxy(new ControllerListImpl(iappDB));
-
         new ViewMainFrame(iControllerlist);
+
+
 
     }
 
