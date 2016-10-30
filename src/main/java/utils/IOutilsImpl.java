@@ -22,8 +22,6 @@ public class IOutilsImpl implements Serializable{
 
         boolean res = false;
 
-        //String pathDB = IOutilsImpl.loadPathFromFile(Contstants.PATH_FOR_SAVEDB);
-
         if (obj != null) {
             File fileDB = new File(pathDB);
             if (!fileDB.exists()) {
@@ -92,7 +90,6 @@ public class IOutilsImpl implements Serializable{
 
     public static Object loadObjFromFile(String filePath) throws IOException {
 
-        //String filePath = IOutilsImpl.loadPathFromFile(Contstants.PATH_FOR_SAVEDB);
 
         try (FileInputStream fis = new FileInputStream(filePath);
              ObjectInputStream input =
@@ -111,14 +108,16 @@ public class IOutilsImpl implements Serializable{
 
     public static void saveLogToFile(String logs) throws IOException {
 
-        File file = new File (Contstants.PATH_FOR_LOGER);
-        IOutils.class.getResource(Contstants.PATH_FOR_LOGER);
+        String path_for_loger = PropertiesHolder.getProperty("PATH_FOR_LOGER");
+
+        File file = new File (path_for_loger);
+        IOutils.class.getResource(path_for_loger);
 
         if (!file.exists()){
             file.createNewFile();
         }
 
-        try (PrintWriter printWrite = new PrintWriter(new FileWriter(Contstants.PATH_FOR_LOGER, true), true)) {
+        try (PrintWriter printWrite = new PrintWriter(new FileWriter(path_for_loger, true), true)) {
             printWrite.println(logs);
 
         } catch (IOException e) {

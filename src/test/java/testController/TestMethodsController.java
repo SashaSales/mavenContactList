@@ -1,3 +1,4 @@
+package testController;
 
 import appDB.IappDB;
 import constants.OperatorModifiers;
@@ -6,9 +7,7 @@ import exceptions.ContactNullPointerException;
 import exceptions.WordIsEmpty;
 import model.Contact;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
-
 
 import java.io.*;
 import java.util.Set;
@@ -18,10 +17,11 @@ import java.util.TreeSet;
 /**
  * Created by work on 09.10.2016.
  */
-public class TestMethods {
+public class TestMethodsController {
 
     @Test
     public void addContact() {
+
         IControllerlist iControllerlist = InitData.createTestData();
         boolean addContactResult = iControllerlist.addContact("Smit", "0937721749", "wieurw@gmail.com");
         Assert.assertEquals("Test method AddContact", true, addContactResult);

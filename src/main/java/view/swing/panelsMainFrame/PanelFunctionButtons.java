@@ -7,6 +7,7 @@ import exceptions.WordIsEmpty;
 import logger.LoggerContainer;
 import model.Contact;
 import utils.IOutilsImpl;
+import utils.PropertiesHolder;
 import view.swing.frames.ViewAddContact;
 import view.swing.frames.ViewInfoContact;
 import view.swing.frames.ViewMainFrame;
@@ -49,7 +50,7 @@ public class PanelFunctionButtons {
                     case JOptionPane.YES_OPTION:
                         try {
 
-                            String pathDB = IOutilsImpl.loadPathFromFile(Contstants.PATH_FOR_SAVEDB);
+                            String pathDB = IOutilsImpl.loadPathFromFile(PropertiesHolder.getProperty("PATH_FOR_SAVEDB"));
                             iControllerlist.saveDB(pathDB);
                             viewMainFrame.dispose();
                             break;
@@ -68,8 +69,8 @@ public class PanelFunctionButtons {
             }
         });
 
-        ImageIcon deleteContactIcon = new ImageIcon(Contstants.IMAGE_DELETE);
-        ImageIcon infoContactIcon = new ImageIcon(Contstants.IMAGE_INFO);
+        ImageIcon deleteContactIcon = new ImageIcon(PropertiesHolder.getProperty("IMAGE_DELETE"));
+        ImageIcon infoContactIcon = new ImageIcon(PropertiesHolder.getProperty("IMAGE_INFO"));
 
         JButton deleteContactButton = new JButton();
         deleteContactButton.setIcon(deleteContactIcon);

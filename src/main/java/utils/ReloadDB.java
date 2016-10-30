@@ -20,7 +20,7 @@ public class ReloadDB {
 
         String pathDB = null;
         try {
-            pathDB = IOutilsImpl.loadPathFromFile(Contstants.PATH_FOR_SAVEDB);
+            pathDB = IOutilsImpl.loadPathFromFile(PropertiesHolder.getProperty("PATH_FOR_SAVEDB"));
         } catch (IOException e) {
             LoggerContainer.logEvent("ReloadDB class proccess loadPathFromFile, IOException error: " + e.getMessage());
             e.printStackTrace();
@@ -42,7 +42,7 @@ public class ReloadDB {
         } else if (testDBForNull != -1 && new File(pathDB).exists()){
             String filePath = null;
             try {
-                filePath = IOutilsImpl.loadPathFromFile(Contstants.PATH_FOR_SAVEDB);
+                filePath = IOutilsImpl.loadPathFromFile(PropertiesHolder.getProperty("PATH_FOR_SAVEDB"));
             } catch (IOException e) {
                 LoggerContainer.logEvent("ReloadDB class, loadPathFromFile, IOException error: " + e.getMessage());
                 e.printStackTrace();
@@ -104,7 +104,7 @@ public class ReloadDB {
             case JFileChooser.APPROVE_OPTION:
 
                 File selectedDir = fch.getSelectedFile();
-                String pathForDb = selectedDir.getAbsoluteFile() + "/myDB.txt";
+                String pathForDb = selectedDir.getPath() + "/myDB.txt";
                 File fileDB = new File(pathForDb);
                 try {
                     fileDB.createNewFile();
@@ -113,14 +113,14 @@ public class ReloadDB {
                 }
 
                 try {
-                    IOutilsImpl.savePathToFile(Contstants.PATH_FOR_SAVEDB, fileDB);
+                    IOutilsImpl.savePathToFile(PropertiesHolder.getProperty("PATH_FOR_SAVEDB"), fileDB);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
                 break;
 
             case JFileChooser.CANCEL_OPTION:
-                pathForDb = "resources/myDB.txt";
+                pathForDb = "src/main/resources/myDB.txt";
                 fileDB = new File(pathForDb);
                 try {
                     fileDB.createNewFile();
@@ -129,7 +129,7 @@ public class ReloadDB {
                 }
 
                 try {
-                    IOutilsImpl.savePathToFile(Contstants.PATH_FOR_SAVEDB, fileDB);
+                    IOutilsImpl.savePathToFile(PropertiesHolder.getProperty("PATH_FOR_SAVEDB"), fileDB);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
